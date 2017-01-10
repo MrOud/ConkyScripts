@@ -1,0 +1,120 @@
+#Based on configuration provided by:
+# **********************************************************************
+# "CPU Panel (8-core)" theme for Conky by Tony George (teejee2008@gmail.com)
+#
+# Webpage: http://teejeetech.blogspot.in/
+# **********************************************************************
+# Modified by Kris Oud
+
+background yes
+double_buffer yes
+
+alignment top_right
+
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color 000000
+default_shade_color 000000
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+
+gap_x 0
+gap_y 0
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_colour 000000
+own_window_argb_visual yes
+own_window_argb_value 20
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+minimum_size 10 10
+maximum_width 300
+stippled_borders 0
+update_interval 2.0
+uppercase yes
+use_spacer none
+
+show_graph_scale no
+show_graph_range no
+short_units yes
+
+use_xft yes
+xftalpha 0.1
+xftfont Droid Sans:bold:size=10
+color0 FFFFFF
+color1 AAAAAA
+color2 F9160E
+color3 EFEF42
+color4 049106
+
+
+TEXT
+${color1}${hr 2}
+${color4}${font Droid Sans:bold:size=10}${time %a, %b %e %Y}${alignr}${time %l:%M:%S %P}
+${color1}${hr 2}
+${color4}${exec whoami}@${nodename}${alignr}${font Droid Sans:size=10}${color0}${kernel}
+${color4}${font Droid Sans:bold:size=10}CPU Percentage:${alignr}${color0}${font Droid Sans:size=10}${cpu cpu0}%
+${color4}${font Droid Sans:bold:size=10}CPU Temp:${color0}${font Droid Sans:size=10}${alignr}${hwmon temp 1}°C
+${color4}${font Droid Sans:bold:size=10}Uptime:${color0}${font Droid Sans:size=10}${alignr}${uptime_short}
+#CPU Graphs
+${color0}${cpugraph cpu0 160,200 color0 color4 -l}${color1}
+${offset 200}${voffset -175}${cpugraph cpu1 40,100}
+${offset 200}${voffset -15}${cpugraph cpu2 40,100}
+${offset 200}${voffset -15}${cpugraph cpu3 40,100}
+${offset 200}${voffset -15}${cpugraph cpu4 40,100}
+${font Droid Sans:size=6}${color1}
+${offset 5}${voffset -175}CPU Usage ${freq_g cpu0}GHz
+${offset 205}${voffset -12}1
+${offset 205}${voffset 30}2
+${offset 205}${voffset 30}3
+${offset 205}${voffset 30}4
+${font Droid Sans:bold:size=10}
+${voffset 5}
+${color4}Battery${color0} ${font Droid Sans:size=10}${alignr}${battery_percent BAT0}% [${battery_short}]
+${color0}${hr 1}
+${color4}${voffset -8}${battery_bar 5,300 BAT0}
+${color0}${voffset -13}${hr 1}
+${color4}${font Droid Sans:bold:size=10}Hard Drive${color0}${font Droid Sans:size=10}${alignr}${fs_used} / ${fs_size} (${fs_used_perc}%)
+${color0}${voffset -4}${hr 1}
+${color4}${font Droid Sans:bold:size=10}Processes ${color0}${alignr}
+${color0}${voffset -5}${hr 1}
+${font Droid Sans:size=8}${voffset -13}
+${top name 1} $alignr ${top cpu 1}%
+${top name 2} $alignr ${top cpu 2}%
+${top name 3} $alignr ${top cpu 3}%
+${top name 4} $alignr ${top cpu 4}%
+${top name 5} $alignr ${top cpu 5}%
+${voffset -4}${hr 1}
+${font Droid Sans:bold:size=10}
+${voffset -15}${color4}RAM ${color0}${font Droid Sans:size=10}${alignr}${mem}/${memmax}
+${voffset -4}${hr 1}
+${voffset -30}
+${font Droid Sans:size=8}
+${top_mem name 1} $alignr ${top_mem mem_res 1}
+${top_mem name 2} $alignr ${top_mem mem_res 2}
+${top_mem name 3} $alignr ${top_mem mem_res 3}
+${top_mem name 4} $alignr ${top_mem mem_res 4}
+${top_mem name 5} $alignr ${top_mem mem_res 5}
+${color0}${hr 1}
+${font Droid Sans:bold:size=10}${color4}Local IP:${color0}${font Droid Sans:size=10}${alignr}${addr wlp7s0}
+${font Droid Sans:bold:size=10}${color4}${wireless_essid wlp7s0}:${color0}${font Droid Sans:size=10}${alignr} ${wireless_link_qual_perc wlp7s0}%
+${voffset -5}
+${downspeedgraph wlp7s0 40,300}
+${voffset 5}${upspeedgraph wlp7s0 40,300}
+${font Droid Sans:size=6}${color1}
+${offset 5}${voffset -135}Downloads:${alignr}${downspeedf wlp7s0} K [${totaldown wlp7s0}]
+${offset 5}${voffset 50}Uploads:${alignr}${upspeedf wlp7s0} K [${totalup wlp7s0}]
+${voffset 40}
+${color4}${font Droid Sans:bold:size=10}To do:
+${font Droid Sans:size=8}
+${color0}${voffset -14}${exec tail ~/.todo}
